@@ -1,7 +1,7 @@
 const path=require('path');
 const express = require('express');
 const configviewEngine=(app)=>{
-    console.log('>>>check ___dirname:',path.join('./src', 'views'));
+    //console.log('>>>check ___dirname:',path.join('./src', 'views'));
     app.set('views', path.join('./src', 'views'));
     app.set('view engine', 'ejs');
     //config static files

@@ -1,12 +1,9 @@
-const express = require('express')
-const router=express.Router();
+const express = require('express');
+const router = express.Router();
+const { getHomePage, getABC, viduEJS } = require('../controllers/homeController');
 
-router.get('/', (req, res) => {
-    res.send('Hello World!');
-  })
-  
-router.get ('/viduEJS', (req, res) => {
-    res.render('sample');
-  })
+router.get('/', getHomePage);
+router.get('/abc', getABC);
+router.get('/test', viduEJS);
 
 module.exports = router;
