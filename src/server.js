@@ -3,9 +3,10 @@ const express = require('express');
 const path = require('path');
 const configviewEngine=require('./config/viewEngine');
 const webRoutes = require('./routes/web');
+const connection = require('./config/database');
 
 //get the client
-const mysql=require('mysql2');
+
 
 
 //console.log(">>>check ENV:",process.env)
@@ -30,13 +31,6 @@ app.use('/',webRoutes);
 
 //test connection
 // create the connection to database
-const connection = mysql.createConnection({
-  host: 'localhost',
-  port:3306,
-  user: 'root',
-  password:'Mungmung61.',
-  database: 'mung_hoc_sql'
-});
 
 connection.query(
   'SELECT * FROM  User u ',
