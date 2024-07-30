@@ -25,10 +25,6 @@ configviewEngine(app);
 app.use('/',webRoutes);
 
 // Khai báo route để render template
-
-
-
-
 //test connection
 // create the connection to database
 
