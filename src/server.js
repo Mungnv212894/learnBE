@@ -17,6 +17,10 @@ const hostname=process.env.HOST_NAME
 
 // Cấu hình template engine và đường dẫn views
 
+//conffig req.body
+app.use(express.json());
+app.use(express.urlencoded({ extended: true })); //for form data
+
 
 //config template engine
 configviewEngine(app);

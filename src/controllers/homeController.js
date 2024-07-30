@@ -17,6 +17,11 @@ const viduEJS = (req, res) => {
     res.render('sample'); // Đảm bảo bạn có file 'sample.ejs' trong thư mục views
 };
 
+const postCreateUser=(req,res)=>{
+    console.log('>>>req.body',req.body);
+    res.send('Create a new user')
+}
+
 module.exports = {
-    getHomePage, getABC, viduEJS
+    getHomePage, getABC, viduEJS,postCreateUser
 };
