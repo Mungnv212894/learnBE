@@ -1,11 +1,14 @@
 const connection=require('../config/database');
+const {getAllUsers}=require('../services/CRUDService');
 
-
-const getHomePage = (req, res) => {
+const getHomePage = async(req, res) => {
     //res.send('Xin chào thế giới');
     //process. data
     //call model
-    return  res.render('home.ejs')
+    
+    //console.log(">>>Results:",results);
+    let results= await getAllUsers();
+    return  res.render('home.ejs',{listUsers:results})
       
 };
 
