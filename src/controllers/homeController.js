@@ -18,8 +18,20 @@ const viduEJS = (req, res) => {
 };
 
 const postCreateUser=(req,res)=>{
-    console.log('>>>req.body',req.body);
-    res.send('Create a new user')
+    let email = req.body.email;
+    let name = req.body.name;
+    let city = req.body.city;
+
+    //res.send('Create a new user')
+    connection.query(
+        `INSERT INTO User (email,name,city) 
+        VALUE(?,?,?);`,
+        [email,name,city],
+        function(err,results){
+            console.log(results);
+            res.send('Create a new user');
+        }
+    );
 }
 
 module.exports = {
