@@ -1,6 +1,6 @@
 const connection=require('../config/database');
 const { use } = require('../routes/web');
-const {getAllUsers,getUserById}=require('../services/CRUDService');
+const {getAllUsers,getUserById,updateUserbyId}=require('../services/CRUDService');
 
 const getHomePage = async(req, res) => {
     //res.send('Xin chào thế giới');
@@ -70,7 +70,28 @@ const getUpdatePage=async(req,res)=>{
     
     res.render('edit.ejs',{userEdit:user})//x<-y
 }
+const postUpdateUser=async(req,res)=>{
+    let email = req.body.email;
+    let name = req.body.name;
+    let city = req.body.city;
+    let userId=req.body.userId;
+
+
+    await updateUserbyId(email,city,name,userId);
+    
+
+    //console.log(">>>Results=",results);
+    //res.send('Update a new user successfully');
+    res.redirect('/');
+
+//   
+
+
+
+  //const [results,fields]=await connection.query('SELECT * FROM  User u ');
+ //console.log(">>>Results=",results);
+}
 module.exports = {
     getHomePage, getABC, viduEJS,postCreateUser,getCreatePage,
-    getUpdatePage
+    getUpdatePage,postUpdateUser
 };
