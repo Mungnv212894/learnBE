@@ -1,5 +1,6 @@
 const connection=require('../config/database');
-const {getAllUsers}=require('../services/CRUDService');
+const { use } = require('../routes/web');
+const {getAllUsers,getUserById}=require('../services/CRUDService');
 
 const getHomePage = async(req, res) => {
     //res.send('Xin chào thế giới');
@@ -61,6 +62,15 @@ const postCreateUser= async(req,res)=>{
 const getCreatePage=(req,res)=>{
      res.render('create.ejs')
 }
+const getUpdatePage=async(req,res)=>{
+    const useId=req.params.id;
+    let user=await getUserById(useId);
+   
+
+    
+    res.render('edit.ejs',{userEdit:user})//x<-y
+}
 module.exports = {
-    getHomePage, getABC, viduEJS,postCreateUser,getCreatePage
+    getHomePage, getABC, viduEJS,postCreateUser,getCreatePage,
+    getUpdatePage
 };
