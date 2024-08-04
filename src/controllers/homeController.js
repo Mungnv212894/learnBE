@@ -1,6 +1,6 @@
 const connection=require('../config/database');
 const { use } = require('../routes/web');
-const {getAllUsers,getUserById,updateUserbyId}=require('../services/CRUDService');
+const {getAllUsers,getUserById,updateUserbyId, deleteUserById}=require('../services/CRUDService');
 
 const getHomePage = async(req, res) => {
     //res.send('Xin chào thế giới');
@@ -91,7 +91,18 @@ const postUpdateUser=async(req,res)=>{
   //const [results,fields]=await connection.query('SELECT * FROM  User u ');
  //console.log(">>>Results=",results);
 }
+const postDeleteUser=async(req,res)=>{
+    const useId=req.params.id;
+    let user=await getUserById(useId);
+    res.render('delete.ejs',{userEdit:user})
+    //res.send('Delete a user successfully');
+}
+const postHandleRemoveUser=async(req,res)=>{
+    const id=req.body.userId;
+    await deleteUserById(id);
+    res.redirect('/');
+}
 module.exports = {
     getHomePage, getABC, viduEJS,postCreateUser,getCreatePage,
-    getUpdatePage,postUpdateUser
+    getUpdatePage,postUpdateUser,postDeleteUser,postHandleRemoveUser
 };
